@@ -1,8 +1,8 @@
 #!/bin/bash
 loadkeys br-abnt2
 timedatectl set-ntp true
-mkfs.ext4 /dev/sda2
-mount /dev/sda2 /mnt  
+mkfs.ext4 /dev/sda1
+mount /dev/sda1 /mnt  
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
