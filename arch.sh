@@ -14,9 +14,9 @@ mkfs.ext4 /dev/sda1
 mount /dev/sda1 /mnt  
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
-cp arch.sh /mnt
+mv arch.sh /mnt
 
-arch-chroot /mnt ./arch.sh
+arch-chroot /mnt bash arch.sh
 pacman -S nano grub networkmanager
 ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 hwclock --systohc
@@ -33,3 +33,8 @@ passwd
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
+systemctl enable NetworkManager
+
+pacman -S xorg-server gdm gnome
+
+systemctl enable gdm
