@@ -14,6 +14,7 @@ mkfs.ext4 /dev/sda1
 mount /dev/sda1 /mnt  
 pacstrap /mnt base linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
+cp arch.sh /mnt
 
 arch-chroot /mnt
 pacman -S nano grub networkmanager
