@@ -34,7 +34,3 @@ grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable NetworkManager
-
-pacman -S xorg-server gdm gnome
-
-systemctl enable gdm
