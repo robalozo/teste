@@ -12,23 +12,10 @@ timedatectl set-ntp true
 
 mkfs.ext4 /dev/sda1
 mount /dev/sda1 /mnt  
-pacstrap /mnt base linux linux-firmware
+pacstrap /mnt base base-devel linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
-mv arch.sh /mnt
 
-arch-chroot /mnt bash arch.sh
-pacman -S nano grub networkmanager
-ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
-hwclock --systohc
-locale-gen
-echo 'arch' > /etc/hostname
-echo '127.0.0.1	    localhost.localdomain   localhost' >> /etc/hosts
-echo '::1    localhost.localdomain   localhost' >> /etc/hosts
-echo '127.0.0.1	    arch.localdomain   arch' >> /etc/hosts
+wget https://raw.githubusercontent.com/robalozo/teste/main/arch2.sh
+mv arch2.sh /mnt
 
-mkinitcpio -P
-clear
-passwd
-
-grub-install /dev/sda
-grub-mkconfig -o /boot/grub/grub.cfg
+arch-chroot /mnt bash arch2.sh
